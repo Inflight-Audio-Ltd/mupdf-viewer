@@ -1,0 +1,3 @@
+[submodule "mupdf-viewer-cordova-plugin"]
+	path = mupdf-viewer-cordova-plugin
+	url = https://github.com/Inflight-Audio-Ltd/mupdf-viewer-cordova-plugin.git
