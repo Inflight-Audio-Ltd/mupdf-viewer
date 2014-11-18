@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -18,8 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-
-import nl.creativeskills.pdfexample.R;
 
 class PatchInfo {
 	public BitmapHolder bmh;
@@ -214,7 +211,7 @@ public abstract class PageView extends ViewGroup {
 		if (mBusyIndicator == null) {
 			mBusyIndicator = new ProgressBar(mContext);
 			mBusyIndicator.setIndeterminate(true);
-			mBusyIndicator.setBackgroundResource(R.drawable.busy);
+			mBusyIndicator.setBackgroundResource(mContext.getResources().getIdentifier("drawable","busy", mContext.getPackageName()));
 			addView(mBusyIndicator);
 		}
 	}
@@ -271,7 +268,7 @@ public abstract class PageView extends ViewGroup {
 				if (mBusyIndicator == null) {
 					mBusyIndicator = new ProgressBar(mContext);
 					mBusyIndicator.setIndeterminate(true);
-					mBusyIndicator.setBackgroundResource(R.drawable.busy);
+					mBusyIndicator.setBackgroundResource(mContext.getResources().getIdentifier("drawable","busy", mContext.getPackageName()));
 					addView(mBusyIndicator);
 					mBusyIndicator.setVisibility(INVISIBLE);
 					mHandler.postDelayed(new Runnable() {

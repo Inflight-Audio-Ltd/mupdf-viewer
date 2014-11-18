@@ -2,46 +2,25 @@ package nl.creativeskills.mupdf;
 
 import java.util.concurrent.Executor;
 import java.io.InputStream;
-import java.io.FileInputStream;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
-import android.util.DisplayMetrics;
-import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.ViewAnimator;
 
 import nl.creativeskills.pdfexample.R;
 
@@ -234,7 +213,6 @@ public class MuPDFActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-
 		mAlertBuilder = new AlertDialog.Builder(this);
 
 		if (core == null) {
@@ -278,8 +256,10 @@ public class MuPDFActivity extends Activity
 								buffer = null;
 								Resources res = getResources();
 								AlertDialog alert = mAlertBuilder.create();
-								String contentFailure = res.getString(R.string.content_failure);
-								String openFailed = res.getString(R.string.open_failed);
+//								getApplication().getResources().getIdentifier("page_landing","layout",getApplication().getPackageName());
+								String contentFailure = res.getString(getApplication().getResources().getIdentifier("content_failure","string",getApplication().getPackageName()));
+								String openFailed = res.getString(getApplication().getResources().getIdentifier("open_failed","string",getApplication().getPackageName()));
+//								String openFailed = res.getString(R.string.open_failed);
 								setTitle(String.format(contentFailure, openFailed, failString));
 								alert.setButton(AlertDialog.BUTTON_POSITIVE, "Dismiss",
 										new DialogInterface.OnClickListener() {
@@ -310,7 +290,7 @@ public class MuPDFActivity extends Activity
 		if (core == null)
 		{
 			AlertDialog alert = mAlertBuilder.create();
-			alert.setTitle(R.string.open_failed);
+			alert.setTitle(getApplication().getResources().getIdentifier("open_failed","string",getApplication().getPackageName()));
 			alert.setButton(AlertDialog.BUTTON_POSITIVE, "Dismiss",
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
@@ -402,7 +382,7 @@ public class MuPDFActivity extends Activity
 		RelativeLayout layout = new RelativeLayout(this);
 		layout.addView(mDocView);
 		layout.addView(mButtonsView);
-		layout.setBackgroundResource(R.drawable.tiled_background);
+		layout.setBackgroundResource(getApplication().getResources().getIdentifier("tiled_background","drawable",getApplication().getPackageName()));
 		//layout.setBackgroundResource(R.color.canvas);
 		setContentView(layout);
 	}
@@ -470,10 +450,10 @@ public class MuPDFActivity extends Activity
 	}
 
 	void makeButtonsView() {
-		mButtonsView = getLayoutInflater().inflate(R.layout.buttons,null);
-		mFilenameView = (TextView)mButtonsView.findViewById(R.id.docNameText);
-		mInfoView = (TextView)mButtonsView.findViewById(R.id.info);
-		mButtonClose = (Button)mButtonsView.findViewById(R.id.closeBtn);
+		mButtonsView = getLayoutInflater().inflate(getApplication().getResources().getIdentifier("buttons","layout",getApplication().getPackageName()), null);
+		mFilenameView = (TextView)mButtonsView.findViewById(getApplication().getResources().getIdentifier("docNameText","id",getApplication().getPackageName()));
+		mInfoView = (TextView)mButtonsView.findViewById(getApplication().getResources().getIdentifier("info","id",getApplication().getPackageName()));
+		mButtonClose = (Button)mButtonsView.findViewById(getApplication().getResources().getIdentifier("closeBtn","id",getApplication().getPackageName()));
 		mInfoView.setVisibility(View.INVISIBLE);
 	}
 
